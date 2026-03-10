@@ -29,6 +29,10 @@
     min-width: 90px;
     flex: 1;
   }
+  @keyframes chrsPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+  }
   .tile .num {
     color: #FFCE00;
     font-family: 'Montserrat', Arial, sans-serif;
@@ -36,7 +40,11 @@
     font-weight: 700;
     line-height: 1;
     display: block;
+    animation: chrsPulse 2.4s ease-in-out infinite;
   }
+  .tile:nth-child(2) .num { animation-delay: 0.2s; }
+  .tile:nth-child(3) .num { animation-delay: 0.4s; }
+  .tile:nth-child(4) .num { animation-delay: 0.6s; }
   .tile .lbl {
     color: rgba(255,255,255,0.5);
     font-family: 'Open Sans', Arial, sans-serif;
