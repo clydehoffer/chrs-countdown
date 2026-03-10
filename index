@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHRS Countdown</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Montserrat', Arial, sans-serif;
+  }
+  .tiles {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+  .tile {
+    background: #000;
+    border-radius: 6px;
+    padding: 20px 20px;
+    text-align: center;
+    min-width: 90px;
+    flex: 1;
+  }
+  .tile .num {
+    color: #FFCE00;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+  }
+  .tile .lbl {
+    color: rgba(255,255,255,0.5);
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="tiles">
+  <div class="tile"><span class="num" id="d">--</span><span class="lbl">Days</span></div>
+  <div class="tile"><span class="num" id="h">--</span><span class="lbl">Hours</span></div>
+  <div class="tile"><span class="num" id="m">--</span><span class="lbl">Mins</span></div>
+  <div class="tile"><span class="num" id="s">--</span><span class="lbl">Secs</span></div>
+</div>
+<script>
+var goal = new Date(2026, 4, 11);
+function tick() {
+  var now = new Date(), diff = goal - now;
+  if (diff < 0) return;
+  document.getElementById('d').textContent = Math.floor(diff / 864e5);
+  document.getElementById('h').textContent = String(Math.floor(diff % 864e5 / 36e5)).padStart(2,'0');
+  document.getElementById('m').textContent = String(Math.floor(diff % 36e5 / 6e4)).padStart(2,'0');
+  document.getElementById('s').textContent = String(Math.floor(diff % 6e4 / 1e3)).padStart(2,'0');
+}
+tick();
+setInterval(tick, 1000);
+</script>
+</body>
+</html>
